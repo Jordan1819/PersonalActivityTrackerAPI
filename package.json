@@ -1,0 +1,23 @@
+{
+  "name": "personalactivitytrackerapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jordan1819/PersonalActivityTrackerAPI.git"
+  },
+  "keywords": [],
+  "author": "Jordan Waite",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jordan1819/PersonalActivityTrackerAPI/issues"
+  },
+  "homepage": "https://github.com/Jordan1819/PersonalActivityTrackerAPI#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
