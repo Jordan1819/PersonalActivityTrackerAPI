@@ -20,11 +20,11 @@ This API will allow users to track personal activities (e.g., workouts, study se
 ---
 
 ## Project Structure (early scaffold)
-src/
-|- app.js # Express app config
-|- server.js # Server entry point
-|- routes/ # API route definitions
-|- middeware/ # Custom middleware
+src/  
+|- app.js # Express app config  
+|- server.js # Server entry point  
+|- routes/ # API route definitions  
+|- middeware/ # Custom middleware  
 
 
 This structure will evolve as the project grows.
