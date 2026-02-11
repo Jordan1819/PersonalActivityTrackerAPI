@@ -31,6 +31,12 @@ This structure will evolve as the project grows.
 
 ---
 
+## Motivation
+This project exists to:
+- Build confidence & understanding in backend system design
+- Learn industry-standard API patterns
+- Serve as a foundation for future frontend integrations
+
 ## Development Phases
 
 ### Phase 1: Project Skeleton & Server Setup
@@ -117,3 +123,10 @@ This structure will evolve as the project grows.
 **Outcome:** API is accessible, documented, and deployable.
 
 ---
+
+### Phase 8: Frontend Client
+**Goal:** Develop and deploy frontend client
+
+- Simple, stylish UI
+- Toggleability between light and dark themes
+- Activity analytics dashboard

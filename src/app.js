@@ -10,13 +10,21 @@ const express = require('express');
 // Create express app instance
 const app = express();
 
-// Add middleware that parses incoming JSON requests
-app.use(express.json());
+// Logger middleware
+const logger = require('./middleware/logger');
 
 // Import routes defined in health.routes.js
 const healthRoutes = require('./routes/health.routes');
 
-// Mount healthRoutes router under /health
+// **** Request/ middleware pipeline ****
+
+// Log incoming requests
+app.use(logger);
+
+// Parse incoming JSON requests
+app.use(express.json());
+
+// Mount healthRoutes router under /health endpoint
 app.use('/health', healthRoutes);
 
 // Export express app

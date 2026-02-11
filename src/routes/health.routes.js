@@ -9,7 +9,7 @@ const express = require('express');
 // Create router object
 const router = express.Router();
 
-// Define route for GET /health
+// Define route for GET requests
 router.get('/', (req, res) => {
     res.json({ status: 'ok' });
 });
