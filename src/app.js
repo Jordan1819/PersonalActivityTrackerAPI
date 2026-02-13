@@ -12,6 +12,7 @@ const app = express();
 
 // Logger middleware
 const logger = require('./middleware/logger');
+const responseLogger = require('./middleware/responseLogger');
 
 // Import routes defined in health.routes.js
 const healthRoutes = require('./routes/health.routes');
@@ -20,6 +21,8 @@ const healthRoutes = require('./routes/health.routes');
 
 // Log incoming requests
 app.use(logger);
+// Log responses
+app.use(responseLogger);
 
 // Parse incoming JSON requests
 app.use(express.json());
