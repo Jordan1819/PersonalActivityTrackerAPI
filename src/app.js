@@ -14,7 +14,7 @@ const app = express();
 const logger = require('./middleware/logger');
 const responseLogger = require('./middleware/responseLogger');
 
-// Import routes defined in health.routes.js
+// Import routes
 const healthRoutes = require('./routes/health.routes');
 
 // **** Request/ middleware pipeline ****
