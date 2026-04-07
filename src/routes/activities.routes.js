@@ -12,7 +12,7 @@ router.get('/:userId', async (req, res) => {
     const { userId } = req.params;
     try {
         const result = await db.query(
-            'SELECT id, name, description, duration, date FROM activities WHERE user_id = $1',
+            'SELECT activity_id, title, duration_minutes, activity_date FROM activities WHERE user_id = $1',
             [userId]
         );
         res.json(result.rows);
@@ -28,7 +28,7 @@ router.post('/', async (req, res) => {
     const { name, description, duration, date } = req.body;
     try {
         const result = await db.query(
-            'INSERT INTO activities (user_id, name, description, duration, date) VALUES ($1, $2, $3, $4, $5) RETURNING id, name, description, duration, date',
+            'INSERT INTO activities (activity_id, user_id, title, duration_minutes, activity_date) VALUES ($1, $2, $3, $4, $5) RETURNING activity_id, title, duration_minutes, activity_date',
             [userId, name, description, duration, date]
         );
     } catch (error) {

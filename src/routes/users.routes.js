@@ -6,11 +6,12 @@ users.routes.js
 const express = require('express');
 const router = express.Router();
 const db = require('../db');
+const bcrypt = require('bcrypt');
 
 // Get all users
 router.get('/', async (req, res) => {
     try {
-        const result = await db.query('SELECT id, username, email FROM users');
+        const result = await db.query('SELECT user_id, username, email FROM users');
         res.json(result.rows);
     } catch (error) {
         console.error(error);
@@ -18,10 +19,13 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Create a new user
+// Create a new user & hash password
 router.post('/', async (req, res) => {
-    const { username, email, passwordHash } = req.body;
+    const { username, email, password } = req.body;
     try {
+        const saltRounds = 10;
+        const passwordHash = await bcrypt.hash(password, saltRounds);
+
         const result = await db.query(
             'INSERT INTO users (username, email, password_hash) VALUES ($1, $2, $3) RETURNING id, username, email',
             [username, email, passwordHash]
@@ -38,7 +42,7 @@ router.get('/:username', async (req, res) => {
     const { username } = req.params;
     try {
         const result = await db.query(
-            'SELECT id, username, email FROM users WHERE username = $1',
+            'SELECT user_id, username, email FROM users WHERE username = $1',
             [username]
         );
         if (result.rows.length === 0) {
