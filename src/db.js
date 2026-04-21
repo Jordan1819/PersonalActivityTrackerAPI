@@ -1,7 +1,6 @@
 /* db.js 
 - Use connection pool to prevent new connections
   for each request
-- Uses parametrized queries to prevent SQL injection
 */
 
 const { Pool } = require('pg');
