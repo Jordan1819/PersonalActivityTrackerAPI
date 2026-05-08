@@ -21,19 +21,23 @@ router.get('/', async (req, res) => {
 
 // Create a new user & hash password
 router.post('/', async (req, res) => {
+    console.log("POST /users HIT");
     const { username, email, password } = req.body;
     try {
         const saltRounds = 10;
         const passwordHash = await bcrypt.hash(password, saltRounds);
 
         const result = await db.query(
-            'INSERT INTO users (username, email, password_hash) VALUES ($1, $2, $3) RETURNING id, username, email',
+            'INSERT INTO users (username, email, password_hash) VALUES ($1, $2, $3) RETURNING user_id, username, email',
             [username, email, passwordHash]
         );
         res.status(201).json(result.rows[0]);
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Database error'});
+        console.error("DB Error", error);
+        res.status(500).json({ 
+            error: error.message,
+            code: error.code
+        });
     }
 });
 
@@ -48,6 +52,7 @@ router.get('/:username', async (req, res) => {
         if (result.rows.length === 0) {
             return res.status(404).json({ error: 'User not found'});
         }
+        res.json(result.rows[0]);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Database error'});
