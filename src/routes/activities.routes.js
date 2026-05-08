@@ -23,14 +23,17 @@ router.get('/:userId', async (req, res) => {
 });
 
 // Add a new activity for a user
-router.post('/', async (req, res) => {
+router.post('/:userId/activities', async (req, res) => {
     const { userId } = req.params;
-    const { name, description, duration, date } = req.body;
+    const { name, duration, date } = req.body;
     try {
         const result = await db.query(
-            'INSERT INTO activities (activity_id, user_id, title, duration_minutes, activity_date) VALUES ($1, $2, $3, $4, $5) RETURNING activity_id, title, duration_minutes, activity_date',
-            [userId, name, description, duration, date]
+            'INSERT INTO activities (user_id, title, duration_minutes, activity_date) VALUES ($1, $2, $3, $4) RETURNING activity_id, title, duration_minutes, activity_date',
+            [userId, name, duration, date]
         );
+
+        res.status(201).json(result.rows[0]);
+
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Database error'});
