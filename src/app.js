@@ -31,7 +31,7 @@ app.use(express.json());
 // Mount routes
 app.use('/health', healthRoutes);
 app.use('/users', userRoutes);
-app.use('/activities', activitiesRoutes);
+app.use('/', activitiesRoutes);
 
 // Export express app
 module.exports = app;
